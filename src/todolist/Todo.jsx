@@ -21,7 +21,8 @@ const Todo = () => {
         }
     }
 
-    
+    console.log(todoList)
+
 
     return (
         <>
@@ -29,6 +30,15 @@ const Todo = () => {
                 <h1>TODO List</h1>
                 <input type="text" value={input} onChange={handleInputChange} />
                 <button onClick={addTodo}>Add</button>
+                <br />
+                <table>
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Task Name</th>
+                        </tr>
+                    </thead>
+                </table>
             </center>
         </>
     )
