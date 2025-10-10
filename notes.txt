@@ -1,0 +1,14 @@
+// react is javascript libary developed by facebook
+// react is use for developed single page application 
+// react is client side environment
+// features ---> lightweight , easy to understand, third party packages availables, community support, fast
+// component based libray
+// drawback --> SEO not support,
+
+react working 
+
+when we update any variable value component will not re render 
+to update and render the updated value in UI we need to use states or useState hook 
+
+checking element from virtual dom to real dom is know =n is diffing process 
+which is handle by reconciliation algorithm  
