@@ -34,7 +34,7 @@ const Todo = () => {
     }
 
     const addDataInLocalstorage = () => {
-        if (todoList.length > 0) {
+        if (todoList?.length > 0) {
             localStorage.setItem("todoList", JSON.stringify(todoList));
         }
     }
@@ -42,7 +42,11 @@ const Todo = () => {
 
     const fetchLocalstorageData = () => {
         const todoListData = JSON.parse(localStorage.getItem("todoList"))
-        settodoList(todoListData)
+        if(todoListData?.length>0){
+            settodoList(todoListData)
+        }else{
+            settodoList([])
+        }
     }
 
     // useEffect is react functional hook which is use for manage the sideeffects of react compontnents 
@@ -71,8 +75,8 @@ const Todo = () => {
             {console.log("inside UI")}
             <center>
                 <h1>TODO List</h1>
-                <div class="input-group mb-3">
-                    <input type="text" class="form-control" placeholder="Enter taskName" value={input} onChange={handleInputChange} onKeyDown={handleInputKeyDown} />
+                <div className="input-group mb-3">
+                    <input type="text" className="form-control" placeholder="Enter taskName" value={input} onChange={handleInputChange} onKeyDown={handleInputKeyDown} />
                 </div>
 
                 <button onClick={addTodo} className="btn btn-sm btn-primary">Add</button>
@@ -86,8 +90,8 @@ const Todo = () => {
                         </tr>
                     </thead>
                     <tbody>
-                        {todoList.length > 0 ?
-                            todoList.map((task) => {
+                        {todoList?.length > 0 ?
+                            todoList?.map((task) => {
                                 return (
                                     <tr>
                                         <td>{task.id}</td>
