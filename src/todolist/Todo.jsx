@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Modal } from "react-bootstrap";
 import { MdDelete, MdEditSquare } from "react-icons/md";
+import EditTodo from "./EditTodo";
 
 const Todo = () => {
     const [input, setinput] = useState("");
@@ -112,7 +113,7 @@ const Todo = () => {
                         {todoList?.length > 0 ?
                             todoList?.map((task) => {
                                 return (
-                                    <tr>
+                                    <tr key={task.id}>
                                         <td>{task.id}</td>
                                         <td>{task.taskName}</td>
                                         <td>
@@ -132,27 +133,17 @@ const Todo = () => {
             {/* conditional rendering  */}
             {/* {showModal ? <h1>showmodal</h1> : null}
             {showModal ? <button onClick={() => { setshowModal(false) }}>close Modal</button> : null} */}
-            <Modal
-                onHide={() => setshowModal(false)}
-                show={showModal}
-                size="lg"
-                aria-labelledby="contained-modal-title-vcenter"
-                centered
-            >
-                <Modal.Header closeButton>
-                    <Modal.Title id="contained-modal-title-vcenter">
-                        Edit Task
-                    </Modal.Title>
-                </Modal.Header>
-                <Modal.Body>
-                    <div className="input-group mb-3">
-                        <input type="text" className="form-control" defaultValue={task?.taskName} onChange={handleEditTask} />
-                    </div>
-                    <div>
-                        <button className="btn btn-sm btn-primary" onClick={updateTask}>Submit</button>
-                    </div>
-                </Modal.Body>
-            </Modal>
+            {showModal ?
+                <EditTodo
+                    name={"shailesh"}
+                    task={task}
+                    handleEditTask={handleEditTask}
+                    updateTask={updateTask}
+                    showModal={showModal}
+                    setshowModal={setshowModal}
+                    xyz="kkk"
+                /> :
+                null}
         </div>
     )
 }
