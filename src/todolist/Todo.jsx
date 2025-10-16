@@ -1,13 +1,16 @@
 import { useEffect, useState } from "react";
-import { Modal } from "react-bootstrap";
-import { MdDelete, MdEditSquare } from "react-icons/md";
+
 import EditTodo from "./EditTodo";
+import TodoTable from "./TodoTable";
 
 const Todo = () => {
     const [input, setinput] = useState("");
     const [todoList, settodoList] = useState([]);
     const [showModal, setshowModal] = useState(false);
     const [task, settask] = useState({});
+    const [selectAll, setselectAll] = useState(false);
+
+
     const handleInputChange = (e) => {
         setinput(e.target.value);
     }
@@ -91,6 +94,25 @@ const Todo = () => {
         setshowModal(false);
     }
 
+    const handleSelectAll = (e) => {
+        const existingTodoList = [...todoList];
+        const newTodoList = existingTodoList.map((task) => {
+            return { ...task, isChecked: e.target.checked };
+        })
+        console.log(newTodoList)
+        settodoList(newTodoList);
+        setselectAll(e.target.checked);
+    }
+
+
+    // console.log(selectAll);
+    const removeSelected = () => {
+        const existingTodo = [...todoList];
+        const updatedList = existingTodo.filter((item) => item.isChecked !== true);
+        settodoList(updatedList);
+        setselectAll(false);
+    }
+
     return (
         <div className="container">
             <center>
@@ -99,36 +121,17 @@ const Todo = () => {
                     <input type="text" className="form-control" placeholder="Enter taskName" value={input} onChange={handleInputChange} onKeyDown={handleInputKeyDown} />
                 </div>
 
-                <button onClick={addTodo} className="btn btn-sm btn-primary">Add</button>
+                <button onClick={addTodo} className="btn btn-sm btn-primary mx-1">Add</button>
+                <button onClick={removeSelected} className="btn btn-sm btn-primary mx-1">Remove all</button>
                 <hr />
-                <table className="table mt-4">
-                    <thead>
-                        <tr>
-                            <th>#</th>
-                            <th>Task Name</th>
-                            <th>Action</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {todoList?.length > 0 ?
-                            todoList?.map((task) => {
-                                return (
-                                    <tr key={task.id}>
-                                        <td>{task.id}</td>
-                                        <td>{task.taskName}</td>
-                                        <td>
-                                            <button className="btn m-1 btn-sm btn-primary" onClick={() => { settask(task); setshowModal(true) }}><MdEditSquare /></button>
-                                            <button className="btn m-1 btn-sm btn-danger" onClick={() => handleDeleteTask(task.id)}><MdDelete /></button>
-                                        </td>
-                                    </tr>
-                                )
-                            }) :
-                            <tr>
-                                <td><p>No data found</p></td>
-                            </tr>
-                        }
-                    </tbody>
-                </table>
+                <TodoTable
+                    todoList={todoList}
+                    settask={settask}
+                    setshowModal={setshowModal}
+                    handleDeleteTask={handleDeleteTask}
+                    selectAll={selectAll}
+                    handleSelectAll={handleSelectAll}
+                />
             </center>
             {/* conditional rendering  */}
             {/* {showModal ? <h1>showmodal</h1> : null}
