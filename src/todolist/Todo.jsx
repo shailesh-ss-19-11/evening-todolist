@@ -9,7 +9,21 @@ const Todo = () => {
     const [showModal, setshowModal] = useState(false);
     const [task, settask] = useState({});
     const [selectAll, setselectAll] = useState(false);
+    const [currentPage, setCurrentPage] = useState(1);
+    const itemsperpage = 3;
 
+    // 50 ---> 10 items in single page  10/50
+    // 5 pages 
+    // 1st page -> 1-10 --> 10*1 ->10
+    // 2nd page -> 11-20 --> 10*2 ->20       20-10 -->10
+    // 3rd page -> 21-30
+    // 4th page -> 31-40
+    // 5th page -> 41-50
+
+    const indexOfLastItem = currentPage * itemsperpage;
+    const indexOfFirstItem = indexOfLastItem - itemsperpage;
+    const currentitems = todoList.slice(indexOfFirstItem, indexOfLastItem);
+    const totalPages = Math.ceil(todoList.length / itemsperpage) //-->5
 
     const handleInputChange = (e) => {
         setinput(e.target.value);
@@ -40,6 +54,8 @@ const Todo = () => {
     const addDataInLocalstorage = () => {
         if (todoList?.length > 0) {
             localStorage.setItem("todoList", JSON.stringify(todoList));
+        } else {
+            localStorage.setItem("todoList", JSON.stringify([]));
         }
     }
 
@@ -60,8 +76,6 @@ const Todo = () => {
     useEffect(() => {
         fetchLocalstorageData();
     }, [])
-
-
 
     useEffect(() => {
         addDataInLocalstorage();
@@ -104,11 +118,23 @@ const Todo = () => {
         setselectAll(e.target.checked);
     }
 
+    const handleSelect = (e, id) => {
+        const existingTodoList = [...todoList];
+        const newTodoList = existingTodoList.map((task) => {
+            if (task.id === id) {
+                return { ...task, isChecked: e.target.checked };
+            }
+            return { ...task };
+        })
+        settodoList(newTodoList);
+    }
+
 
     // console.log(selectAll);
     const removeSelected = () => {
         const existingTodo = [...todoList];
         const updatedList = existingTodo.filter((item) => item.isChecked !== true);
+        console.log(updatedList)
         settodoList(updatedList);
         setselectAll(false);
     }
@@ -122,15 +148,17 @@ const Todo = () => {
                 </div>
 
                 <button onClick={addTodo} className="btn btn-sm btn-primary mx-1">Add</button>
-                <button onClick={removeSelected} className="btn btn-sm btn-primary mx-1">Remove all</button>
+                <button onClick={removeSelected} className="btn btn-sm btn-primary mx-1">Remove Selected</button>
                 <hr />
                 <TodoTable
-                    todoList={todoList}
+                    // todoList={todoList}
+                    todoList={currentitems}
                     settask={settask}
                     setshowModal={setshowModal}
                     handleDeleteTask={handleDeleteTask}
                     selectAll={selectAll}
                     handleSelectAll={handleSelectAll}
+                    handleSelect={handleSelect}
                 />
             </center>
             {/* conditional rendering  */}
@@ -147,6 +175,21 @@ const Todo = () => {
                     xyz="kkk"
                 /> :
                 null}
+
+            <div className="text-center mx-3">
+                1  
+                {
+                    [...Array(totalPages)].map((item, index) => {
+                        return (
+                            <button className={currentPage !== index+1 ? "btn btn-sm btn-primary mx-1" : "btn btn-sm btn-secondary mx-1 p-2 border border-light"} 
+                            onClick={() => setCurrentPage(index + 1)}>
+                                {index + 1}
+                            </button>
+                        )
+                    })
+
+                }
+            </div>
         </div>
     )
 }

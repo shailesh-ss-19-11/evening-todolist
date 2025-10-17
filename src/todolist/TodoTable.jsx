@@ -1,7 +1,7 @@
 import React from 'react'
 import { MdDelete, MdEditSquare } from "react-icons/md";
 const TodoTable = (props) => {
-    const { todoList, settask, setshowModal, handleDeleteTask, selectAll,handleSelectAll } = props;
+    const { todoList, settask, setshowModal, handleDeleteTask, selectAll,handleSelectAll,handleSelect } = props;
     return (
         <div>
             <table className="table mt-4">
@@ -20,7 +20,7 @@ const TodoTable = (props) => {
                         todoList?.map((task) => {
                             return (
                                 <tr key={task.id}>
-                                    <td><input type="checkbox" checked={task.isChecked} /></td>
+                                    <td><input onChange={(e)=>handleSelect(e,task.id)} type="checkbox" checked={task.isChecked} /></td>
                                     <td>{task.id}</td>
                                     <td>{task.taskName}</td>
                                     <td>
