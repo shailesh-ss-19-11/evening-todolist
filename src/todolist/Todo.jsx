@@ -172,17 +172,15 @@ const Todo = () => {
                     updateTask={updateTask}
                     showModal={showModal}
                     setshowModal={setshowModal}
-                    xyz="kkk"
                 /> :
                 null}
 
             <div className="text-center mx-3">
-                1  
                 {
                     [...Array(totalPages)].map((item, index) => {
                         return (
-                            <button className={currentPage !== index+1 ? "btn btn-sm btn-primary mx-1" : "btn btn-sm btn-secondary mx-1 p-2 border border-light"} 
-                            onClick={() => setCurrentPage(index + 1)}>
+                            <button className={currentPage !== index + 1 ? "btn btn-sm btn-primary mx-1" : "btn btn-sm btn-secondary mx-1 p-2 border border-light"}
+                                onClick={() => setCurrentPage(index + 1)}>
                                 {index + 1}
                             </button>
                         )
