@@ -8,6 +8,7 @@ import Home from "./pages/Home";
 import About from "./pages/About";
 import Contact from "./pages/Contact";
 import Page404 from "./Page404";
+import Users from "./users/Users";
 
 
 const App = () => {
@@ -20,10 +21,12 @@ const App = () => {
 
       <Routes>
         {/* <Route path="/home" Component={Home} /> */}
+        <Route path="/" element={<Home/>} />
         <Route path="/home" element={<Home/>} />
         <Route path="/about" element={<About/>} />
         <Route path="/contact" element={<Contact/>} />
         <Route path="/todo-list" element={<Todo/>} />
+        <Route path="/users" element={<Users/>} />
         <Route path="*" element={<Page404/>} />
       </Routes>
 
