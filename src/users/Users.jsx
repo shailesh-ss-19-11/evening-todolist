@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { baseURL } from '../../constant'
 import axios from 'axios';
+import UserTable from './UserTable';
 
 const Users = () => {
     const [userData, setuserData] = useState([]);
@@ -60,16 +61,18 @@ const Users = () => {
             alert(err?.message)
             setuserData([]);
         }
-
     }
 
     useEffect(() => {
         fetchUserList();
     }, [])
 
-    return (
+    { console.log(userData) }
 
-        <div>Users</div>
+    return (
+        <div className='container'>
+            <UserTable userData={userData} />
+        </div>
     )
 }
 

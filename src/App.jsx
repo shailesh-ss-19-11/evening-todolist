@@ -17,17 +17,19 @@ const App = () => {
       {/* <h1>Hellow world</h1>
       <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptatum, ad!</p>
       <Counter /> */}
-      <Header />
+      <div className="p-5">
+        <Header />
+      </div>
 
       <Routes>
         {/* <Route path="/home" Component={Home} /> */}
-        <Route path="/" element={<Home/>} />
-        <Route path="/home" element={<Home/>} />
-        <Route path="/about" element={<About/>} />
-        <Route path="/contact" element={<Contact/>} />
-        <Route path="/todo-list" element={<Todo/>} />
-        <Route path="/users" element={<Users/>} />
-        <Route path="*" element={<Page404/>} />
+        <Route path="/" element={<Home />} />
+        <Route path="/home" element={<Home />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/contact" element={<Contact />} />
+        <Route path="/todo-list" element={<Todo />} />
+        <Route path="/users" element={<Users />} />
+        <Route path="*" element={<Page404 />} />
       </Routes>
 
       {/* <Todo /> */}
