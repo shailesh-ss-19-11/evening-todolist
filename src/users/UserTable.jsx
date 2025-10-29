@@ -1,10 +1,13 @@
 import React from 'react'
 import { MdDelete, MdEditSquare } from 'react-icons/md';
+import { useNavigate } from 'react-router-dom';
 
 const UserTable = (props) => {
     const { userData } = props;
+    const navigate = useNavigate();
     return (
         <>
+        <button className='btn btn-sm btn-secondary' onClick={()=>navigate("add-user")}>Add</button>
             <table className='table table-bordered'>
                 <thead>
                     <tr>

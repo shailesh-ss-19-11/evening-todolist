@@ -9,6 +9,7 @@ import About from "./pages/About";
 import Contact from "./pages/Contact";
 import Page404 from "./Page404";
 import Users from "./users/Users";
+import AddUser from "./users/AddUser";
 
 
 const App = () => {
@@ -29,6 +30,7 @@ const App = () => {
         <Route path="/contact" element={<Contact />} />
         <Route path="/todo-list" element={<Todo />} />
         <Route path="/users" element={<Users />} />
+        <Route path="/users/add-user" element={<AddUser />} />
         <Route path="*" element={<Page404 />} />
       </Routes>
 
