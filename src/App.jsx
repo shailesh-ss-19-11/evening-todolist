@@ -10,6 +10,7 @@ import Contact from "./pages/Contact";
 import Page404 from "./Page404";
 import Users from "./users/Users";
 import AddUser from "./users/AddUser";
+import UpdateUser from "./users/UpdateUser";
 
 
 const App = () => {
@@ -31,6 +32,7 @@ const App = () => {
         <Route path="/todo-list" element={<Todo />} />
         <Route path="/users" element={<Users />} />
         <Route path="/users/add-user" element={<AddUser />} />
+        <Route path="/users/edit-user/:userId" element={<UpdateUser />} />
         <Route path="*" element={<Page404 />} />
       </Routes>
 

@@ -3,11 +3,11 @@ import { MdDelete, MdEditSquare } from 'react-icons/md';
 import { useNavigate } from 'react-router-dom';
 
 const UserTable = (props) => {
-    const { userData } = props;
+    const { userData, deleteUser } = props;
     const navigate = useNavigate();
     return (
         <>
-        <button className='btn btn-sm btn-secondary' onClick={()=>navigate("add-user")}>Add</button>
+            <button className='btn btn-sm btn-secondary' onClick={() => navigate("add-user")}>Add</button>
             <table className='table table-bordered'>
                 <thead>
                     <tr>
@@ -32,8 +32,8 @@ const UserTable = (props) => {
                                     <td>{user["job title"]}</td>
                                     <td>{user["company name"]}</td>
                                     <td>
-                                        <button className="btn m-1 btn-sm btn-primary" ><MdEditSquare /></button>
-                                        <button className="btn m-1 btn-sm btn-danger" ><MdDelete /></button>
+                                        <button className="btn m-1 btn-sm btn-primary" onClick={() => navigate("/users/edit-user/" + user.id)}><MdEditSquare /></button>
+                                        <button className="btn m-1 btn-sm btn-danger" onClick={() => deleteUser(user.id)}><MdDelete /></button>
                                     </td>
                                 </tr>
                             )

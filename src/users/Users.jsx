@@ -69,9 +69,20 @@ const Users = () => {
 
     { console.log(userData) }
 
+    const deleteUser = async (id) => {
+        try {
+            const response = await axios.delete(baseURL + "/" + id);
+            if (response.status === 200) {
+                fetchUserList();
+            }
+        } catch (err) {
+            alert(err.message)
+        }
+    }
+
     return (
         <div className='container'>
-            <UserTable userData={userData} />
+            <UserTable userData={userData} deleteUser={deleteUser} />
         </div>
     )
 }

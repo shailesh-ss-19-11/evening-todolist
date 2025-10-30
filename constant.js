@@ -1,1 +1,1 @@
-export const baseURL = "https://retoolapi.dev/nCLkgi/data/";
+export const baseURL = "https://retoolapi.dev/nCLkgi/data";
