@@ -2,9 +2,11 @@ import React, { useEffect, useState } from 'react'
 import { baseURL } from '../../constant'
 import axios from 'axios';
 import UserTable from './UserTable';
+import Loader from '../components/Loader';
 
 const Users = () => {
     const [userData, setuserData] = useState([]);
+    const [loading, setloading] = useState(true);
     //     axios --libary
     //     add/ create user 
     //     update user 
@@ -53,10 +55,13 @@ const Users = () => {
             console.log(response)
             if (response.status === 200) {
                 setuserData(response.data);
+                setloading(false)
             } else {
+                setloading(false)
                 setuserData([]);
             }
         } catch (err) {
+            setloading(false)
             console.log(err)
             alert(err?.message)
             setuserData([]);
@@ -82,7 +87,7 @@ const Users = () => {
 
     return (
         <div className='container'>
-            <UserTable userData={userData} deleteUser={deleteUser} />
+            {loading ? <Loader /> : <UserTable userData={userData} deleteUser={deleteUser} />}
         </div>
     )
 }

@@ -1,10 +1,13 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { MdDelete, MdEditSquare } from 'react-icons/md';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import Loader from '../components/Loader';
 
 const UserTable = (props) => {
+    const [loading, setloading] = useState(props?.userData?.length > 0 ? false : true)
     const { userData, deleteUser } = props;
     const navigate = useNavigate();
+
     return (
         <>
             <button className='btn btn-sm btn-secondary' onClick={() => navigate("add-user")}>Add</button>
@@ -24,8 +27,11 @@ const UserTable = (props) => {
                     {userData.length > 0 ?
                         userData.map((user) => {
                             return (
-                                <tr>
-                                    <td>{user.id}</td>
+                                <tr key={user.id}>
+                                    <td>
+                                        <Link to={"userinfo/" + user.id}>{user.id}</Link>
+
+                                    </td>
                                     <td>{user.name}</td>
                                     <td>{user.email}</td>
                                     <td>{user.phone}</td>
@@ -44,6 +50,7 @@ const UserTable = (props) => {
                     }
                 </tbody>
             </table>
+
         </>
     )
 }

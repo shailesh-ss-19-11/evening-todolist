@@ -11,6 +11,8 @@ import Page404 from "./Page404";
 import Users from "./users/Users";
 import AddUser from "./users/AddUser";
 import UpdateUser from "./users/UpdateUser";
+import UserInfo from "./users/UserInfo";
+import Loader from "./components/Loader";
 
 
 const App = () => {
@@ -19,6 +21,7 @@ const App = () => {
       {/* <h1>Hellow world</h1>
       <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptatum, ad!</p>
       <Counter /> */}
+      {/* <Loader/> */}
       <div className="p-5">
         <Header />
       </div>
@@ -33,6 +36,7 @@ const App = () => {
         <Route path="/users" element={<Users />} />
         <Route path="/users/add-user" element={<AddUser />} />
         <Route path="/users/edit-user/:userId" element={<UpdateUser />} />
+        <Route path="/users/userinfo/:userId" element={<UserInfo />} />
         <Route path="*" element={<Page404 />} />
       </Routes>
 
