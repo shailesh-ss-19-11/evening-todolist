@@ -1,6 +1,7 @@
 import React, { Suspense } from "react";
 import { Route, Routes } from "react-router-dom";
 import Loader from "./components/Loader";
+import ParentComponent from "./usecallback/ParentComponent";
 
 // Lazy load all components
 const Header = React.lazy(() => import("./components/Header"));
@@ -17,13 +18,13 @@ const UserInfo = React.lazy(() => import("./users/UserInfo"));
 const App = () => {
   return (
     <>
-      <div className="p-5">
+      <div className="p-5 text-center">
         <Suspense fallback={<Loader />}>
           <Header />
         </Suspense>
       </div>
 
-      <Suspense fallback={<Loader />}>
+      {/* <Suspense fallback={<Loader />}>
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/home" element={<Home />} />
@@ -36,7 +37,10 @@ const App = () => {
           <Route path="/users/userinfo/:userId" element={<UserInfo />} />
           <Route path="*" element={<Page404 />} />
         </Routes>
-      </Suspense>
+      </Suspense> */}
+      <div className="text-center">
+        <ParentComponent/>
+      </div>
     </>
   );
 };
