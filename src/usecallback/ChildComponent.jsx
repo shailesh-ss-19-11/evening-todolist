@@ -1,8 +1,7 @@
 import React, { useState } from 'react'
 
-const ChildComponent = React.memo(() => {
+const ChildComponent = React.memo(({ handleValueChange }) => {
     console.log("child rendered");
-    const [input, setinput] = useState("")
 
     for (let i = 0; i < 1000; i++) {
         console.log(i);
@@ -11,7 +10,7 @@ const ChildComponent = React.memo(() => {
     return (
         <div>
             <h1>ChildComponent</h1>
-            <input type="text" onChange={(e) => setinput(e.target.value)} />
+            <input type="text" onChange={(e) => handleValueChange(e.target.value)} />
         </div>
     )
 })
