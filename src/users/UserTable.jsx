@@ -50,9 +50,8 @@ const UserTable = (props) => {
                     }
                 </tbody>
             </table>
-
         </>
     )
 }
 
-export default UserTable
+export default UserTable 
