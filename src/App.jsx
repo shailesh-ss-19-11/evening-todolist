@@ -4,6 +4,7 @@ import Loader from "./components/Loader";
 import ParentComponent from "./usecallback/ParentComponent";
 import ParentComponent1 from "./learnchildrenprop/ParentComponent1";
 import ChildComponent1 from "./learnchildrenprop/ChildComponent1";
+import LearnUseMemo from "./components/LearnUseMemo";
 
 // Lazy load all components
 const Header = React.lazy(() => import("./components/Header"));
@@ -38,6 +39,7 @@ const App = () => {
           <Route path="/users/edit-user/:userId" element={<UpdateUser />} />
           <Route path="/users/userinfo/:userId" element={<UserInfo />} />
           <Route path="/usecallback-lazyloading" element={<ParentComponent />} />
+          <Route path="/usememo-example" element={<LearnUseMemo />} />
           <Route path="/children-prop" element={
 
             <ParentComponent1>
