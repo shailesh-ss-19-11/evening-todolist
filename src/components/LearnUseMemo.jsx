@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from 'react'
+import React, { useId, useMemo, useRef, useState } from 'react'
 
 
 // usememo /////////////////
@@ -6,17 +6,26 @@ import React, { useMemo, useState } from 'react'
 // usememo use for prevent expensive calculation calculations 
 
 const LearnUseMemo = () => {
+    const id = useId();
+    console.log(id)
     const [count, setCount] = useState(1);
     const [dark, setDark] = useState(false);
+    const myText = useRef(null);
 
-    
-    const doubleNumber  = useMemo(() => {
-        console.log("Calculating....");
+    const doubleNumber = useMemo(() => {
+        // console.log("Calculating....");
         for (let i = 0; i < 1000; i++) {
-            console.log(i);
+            // console.log(i);
         }  ///heavy calculation
         return count * 2
-    },[count])
+    }, [count])
+
+
+    // console.log(myText);
+    const changeBelowText = () => {
+        myText.current.textContent = "thanks for change the text";
+        document.getElementById("para").textContent = "Thanks for change the text"
+    }
 
     return (
         <div className='text-center' style={dark ? { background: "dark", color: "white" } : { background: "white", color: "black" }}>
@@ -28,6 +37,10 @@ const LearnUseMemo = () => {
             <br /><br />
 
             <p>Double Number : {doubleNumber}</p>
+            <br />
+            <button onClick={changeBelowText}>Change Text</button>
+            <p ref={myText}>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas, harum!</p>
+            <p id={"para"}>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas, harum!</p>
         </div>
     )
 }
