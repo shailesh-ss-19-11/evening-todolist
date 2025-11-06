@@ -49,6 +49,7 @@ const App = () => {
             } />
           <Route path="*" element={<Page404 />} />
         </Routes>
+        
       </Suspense>
     </>
   );
