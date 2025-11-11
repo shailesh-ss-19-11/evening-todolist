@@ -5,6 +5,8 @@ import ParentComponent from "./usecallback/ParentComponent";
 import ParentComponent1 from "./learnchildrenprop/ParentComponent1";
 import ChildComponent1 from "./learnchildrenprop/ChildComponent1";
 import LearnUseMemo from "./components/LearnUseMemo";
+import Login from "./auth/Login";
+import Protected from "./auth/Protected";
 
 // Lazy load all components
 const Header = React.lazy(() => import("./components/Header"));
@@ -29,27 +31,28 @@ const App = () => {
 
       <Suspense fallback={<Loader />}>
         <Routes>
+          <Route path="/login" element={<Login />} />
           <Route path="/" element={<Home />} />
           <Route path="/home" element={<Home />} />
           <Route path="/about" element={<About />} />
           <Route path="/contact" element={<Contact />} />
-          <Route path="/todo-list" element={<Todo />} />
-          <Route path="/users" element={<Users />} />
-          <Route path="/users/add-user" element={<AddUser />} />
-          <Route path="/users/edit-user/:userId" element={<UpdateUser />} />
-          <Route path="/users/userinfo/:userId" element={<UserInfo />} />
+          <Route path="/todo-list" element={<Protected> <Todo /> </Protected>} />
+          <Route path="/users" element={<Protected><Users /></Protected>} />
+          <Route path="/users/add-user" element={<Protected><AddUser /></Protected>} />
+          <Route path="/users/edit-user/:userId" element={<Protected><UpdateUser /></Protected>} />
+          <Route path="/users/userinfo/:userId" element={<Protected><UserInfo /> </Protected>} />
           <Route path="/usecallback-lazyloading" element={<ParentComponent />} />
           <Route path="/usememo-example" element={<LearnUseMemo />} />
           <Route path="/children-prop" element={
 
             <ParentComponent1>
-              <ChildComponent1 name="shailesh"/>
+              <ChildComponent1 name="shailesh" />
             </ParentComponent1>
-            
-            } />
+
+          } />
           <Route path="*" element={<Page404 />} />
         </Routes>
-        
+
       </Suspense>
     </>
   );
