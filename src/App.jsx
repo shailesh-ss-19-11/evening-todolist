@@ -36,11 +36,16 @@ const App = () => {
           <Route path="/home" element={<Home />} />
           <Route path="/about" element={<About />} />
           <Route path="/contact" element={<Contact />} />
-          <Route path="/todo-list" element={<Protected> <Todo /> </Protected>} />
+          <Route path="/todo-list" element={
+            <Protected>
+              <Todo />
+            </Protected>
+
+          } />
           <Route path="/users" element={<Protected><Users /></Protected>} />
-          <Route path="/users/add-user" element={<Protected><AddUser /></Protected>} />
-          <Route path="/users/edit-user/:userId" element={<Protected><UpdateUser /></Protected>} />
-          <Route path="/users/userinfo/:userId" element={<Protected><UserInfo /> </Protected>} />
+          <Route path="/users/add-user" element={<AddUser />} />
+          <Route path="/users/edit-user/:userId" element={<UpdateUser />} />
+          <Route path="/users/userinfo/:userId" element={<UserInfo />} />
           <Route path="/usecallback-lazyloading" element={<ParentComponent />} />
           <Route path="/usememo-example" element={<LearnUseMemo />} />
           <Route path="/children-prop" element={

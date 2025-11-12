@@ -5,8 +5,8 @@ const Header = () => {
     const navigate = useNavigate();
 
     const handleLogout = () => {
-        localStorage.removeItem("userdata");
-        navigate("/");
+        localStorage.removeItem("userData");
+        navigate("/login");
     }
     return (
         <div className='text-center'>

@@ -2,18 +2,14 @@ import React from 'react'
 import { Navigate } from 'react-router-dom';
 
 const Protected = ({ children }) => {
-    const localdata = localStorage.getItem("userdata")
-    let userData;
-    if (localdata) {
-        userData = JSON.parse(atob(localdata));
-    }
+    const userData = JSON.parse(localStorage.getItem("userData"));
     console.log(userData);
-    if (userData && userData.accessToken) {
+
+    if (userData && userData?.accessToken && userData?.refreshToken) {
         return children;
     } else {
         return <Navigate to={"/login"} />
     }
-
 }
 
 export default Protected

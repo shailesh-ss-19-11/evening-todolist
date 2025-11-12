@@ -4,31 +4,32 @@ import { useNavigate } from "react-router-dom";
 
 const Login = () => {
     const navigate = useNavigate();
-    const [input, setinput] = useState({ username: "", password: "" });
+    const [inputs, setinput] = useState({ username: "", password: "" });
 
     const handleInputChange = (e) => {
-        console.dir(e.target)
-        const existingInput = { ...input };
-
-        const { name, value } = e.target;
-        existingInput[name] = value;
-        setinput(existingInput);
+        const { name, value } = e.target
+        const existinginput = { ...inputs };
+        existinginput[name] = value;
+        setinput(existinginput);
     }
 
     const handleSubmit = async () => {
         try {
-            const newInput = { ...input, expiresInMins: 30 };
-            const response = await axios.post("https://dummyjson.com/auth/login", newInput, {
-                headers: { 'Content-Type': 'application/json' },
-            });
-            if (response.status === 200) {
-                localStorage.setItem("userdata", btoa(JSON.stringify(response.data)));
-                navigate("/");
-            }
-            console.log(response, "response")
+            console.log(inputs)
+            const response = await axios.post("https://dummyjson.com/auth/login",
+                inputs,
+                {
+                    headers: { "Content-Type": 'application/json' }
+                })
+                if(response.status===200){
+                    localStorage.setItem("userData",JSON.stringify(response.data));
+                    navigate("/");
+                }
+            console.log(response);
         } catch (err) {
             console.log(err);
         }
+
     }
 
 

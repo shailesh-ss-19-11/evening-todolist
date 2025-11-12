@@ -12,3 +12,16 @@ to update and render the updated value in UI we need to use states or useState h
 
 checking element from virtual dom to real dom is know =n is diffing process 
 which is handle by reconciliation algorithm  
+
+
+login functionality
+
+step1 ---> create login page 
+step2 ---> get login inputs 
+step3 ---> click on submit, call a login api
+step4 ---> store response in localstorage
+step5 ---> navigate to homepage
+step5 ---> create protected component
+step6 ---> send other components which we want to protect them as children prop to protected component
+step6 ---> fetch the localstorage data in protected component
+step7 --> check if the localstoragedata has accessToken and refreshToken if yes then return children prop else navigate to login page
