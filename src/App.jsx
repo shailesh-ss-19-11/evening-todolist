@@ -7,6 +7,10 @@ import ChildComponent1 from "./learnchildrenprop/ChildComponent1";
 import LearnUseMemo from "./components/LearnUseMemo";
 import Login from "./auth/Login";
 import Protected from "./auth/Protected";
+import User from "./pages/User";
+import Products from "./pages/Products";
+import Team from "./pages/Team";
+import Portfolio from "./pages/Portfolio";
 
 // Lazy load all components
 const Header = React.lazy(() => import("./components/Header"));
@@ -34,8 +38,17 @@ const App = () => {
           <Route path="/login" element={<Login />} />
           <Route path="/" element={<Home />} />
           <Route path="/home" element={<Home />} />
-          <Route path="/about" element={<About />} />
+          
+          <Route path="/about" element={<About />} >
+            <Route path="userinfo" element={<User />} />
+            <Route path="products" element={<Products />} />
+            <Route path="team" element={<Team />} />
+            <Route path="portfolio" element={<Portfolio/>} />
+          </Route>
           <Route path="/contact" element={<Contact />} />
+
+
+
           <Route path="/todo-list" element={
             <Protected>
               <Todo />
